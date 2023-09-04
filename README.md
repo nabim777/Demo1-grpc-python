@@ -65,3 +65,16 @@ message DelayedReply {
 ```zsh
 python3 -m grpc_tools.protoc -I protos --python_out=. --grpc_python_out=. protos/greet.proto
 ```
+
+## step 5: To run the program use two terminal one for server and another for client
+
+To run server
+```zsh
+python3 greet_server.py
+```
+
+To run client
+```zsh
+python3 greet_client.py
+```
+
