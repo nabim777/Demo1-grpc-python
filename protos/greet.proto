@@ -1,42 +1,15 @@
-//this code defines a Protocol Buffers service named "Greeter" 
-//with various RPC methods and message types used for communication 
-//between the client and server. The specific behavior of each RPC method 
-//and the structure of the messages are defined in this protobuf file, allowing 
-//for clear and efficient data exchange in a networked application
 syntax = "proto3";
 
-package greet; //defines the namespace for protocoal buffer definations
+package greet;
 
-// The greeting service definition.
-//this is called by the clients having four services in clients
-service Greeter {
-	// Unary RPC method that takes a single `helloRequest` and 
-	rpc SayHello (HelloRequest) returns (HelloReply);
-
-	// Server Streaming RPC method
-	rpc ParrotSaysHello (HelloRequest) returns (stream HelloReply);
-	
-	// Client Streaming RPC method
-	rpc ChattyClientSaysHello (stream HelloRequest) returns (DelayedReply);
-
-	// Both Streaming RPC method
-	rpc InteractingHello (stream HelloRequest) returns (stream HelloReply);
+service GreetingService {
+  rpc SayHello (HelloRequest) returns (HelloResponse);
 }
 
-// The request message containing the user's name.
 message HelloRequest {
   string name = 1;
-  string greeting = 2;
 }
 
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
-}
-
-//This block defines a message type named "DelayedReply". It contains two fileds:"message" of type string and "request"
-// which is a repeated field (similar to an array) containing multiple "HelloRequest" messages.
-message DelayedReply {
-	string message = 1;
-	repeated HelloRequest request = 2;
+message HelloResponse {
+  string greeting = 1;
 }
