@@ -14,6 +14,7 @@ class GreeterServicer(greet_pb2_grpc.GreeterServicer):
 
         return hello_reply
     
+    #SS RPC
     def ParrotSaysHello(self, request, context):
         print("ParrotSaysHello Request Made:")
         print(request)
@@ -24,6 +25,7 @@ class GreeterServicer(greet_pb2_grpc.GreeterServicer):
             yield hello_reply
             time.sleep(3)
 
+    #CS RPC
     def ChattyClientSaysHello(self, request_iterator, context):
         delayed_reply = greet_pb2.DelayedReply()
         for request in request_iterator:
@@ -34,6 +36,7 @@ class GreeterServicer(greet_pb2_grpc.GreeterServicer):
         delayed_reply.message = f"You have sent {len(delayed_reply.request)} messages. Please expect a delayed response."
         return delayed_reply
 
+    #BS RPC
     def InteractingHello(self, request_iterator, context):
         for request in request_iterator:
             print("InteractingHello Request Made:")
